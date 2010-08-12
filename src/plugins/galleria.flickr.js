@@ -102,7 +102,7 @@ F.prototype = {
 	_find: function(params) {
 		params = jQuery.extend({
 			method: 'flickr.photos.search',
-		    extras: 'url_t, url_m, url_o, url_s, url_l, description',
+		    extras: 'url_t, url_m, url_o, url_s, url_l, url_z, description',
 		    sort: this.options.sort
 		}, params);
 		
@@ -130,6 +130,11 @@ F.prototype = {
     		                img = photo.url_o;
     		            }
     		            break;
+		        case 'medium-640':
+			    if (photo.url_z) {
+				img = photo.url_z;
+			    }
+			    break;
     		        case 'original':
     		            if(photo.url_o) {
     		                img = photo.url_o;
