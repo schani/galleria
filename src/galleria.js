@@ -1423,6 +1423,7 @@ var G = window.Galleria = Base.extend({
             } else {
                 c.set(c.current + this.options.carousel_steps);
             }
+	    this.carousel_user_set = true;
         }));
         this.listen(c.left, 'click', this.proxy(function(e) {
             if (this.options.carousel_steps == 'auto') {
@@ -1438,6 +1439,7 @@ var G = window.Galleria = Base.extend({
             } else {
                 c.set(c.current - this.options.carousel_steps);
             }
+	    this.carousel_user_set = true;
         }));
     },
     addElement : function() {
@@ -1578,7 +1580,7 @@ var G = window.Galleria = Base.extend({
         var args = this.queue[0];
         var index = args[0];
         var rewind = !!args[1];
-        if (o.carousel && this.carousel && o.carousel_follow) {
+        if (o.carousel && this.carousel && o.carousel_follow && !this.carousel_user_set) {
             this.carousel.follow(index);
         }
         
